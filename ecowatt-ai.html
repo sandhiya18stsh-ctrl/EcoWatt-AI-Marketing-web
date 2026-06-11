@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<!--
+  EcoWatt AI — Marketing Website
+  Pure HTML5 + CSS3 (no JavaScript)
+  Mobile-first responsive design
+  Single-file version: all CSS inlined
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoWatt AI — Reduce Electricity Bills with the Power of AI</title>
+  <meta name="description" content="EcoWatt AI is an AI-powered Smart Electricity Bill Optimizer and Prime-Time Energy Analyzer. Save more, waste less." />
+  <style>
+/* ==========================================================================
+   EcoWatt AI — Marketing Website Stylesheet
+   Pure CSS3, mobile-first, responsive, modern startup look
+   Inlined for single-file delivery
+   ========================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --green: #00C853;
+  --green-dark: #1B5E20;
+  --white: #FFFFFF;
+  --gray: #F5F7FA;
+  --gray-2: #E6EAF0;
+  --text: #212121;
+  --muted: #5b6470;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 60px rgba(0, 200, 83, 0.18);
+  --gradient: linear-gradient(135deg, #00C853 0%, #1B5E20 100%);
+  --gradient-soft: linear-gradient(135deg, #e8f9ee 0%, #f5f7fa 100%);
+  --transition: 0.25s ease;
+  --max: 1180px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; transition: color var(--transition); }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4 { margin: 0 0 .5em; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+p  { margin: 0 0 1em; color: var(--muted); }
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section { padding: 72px 0; }
+.section-alt { background: var(--gray); }
+.section-head { text-align: center; margin-bottom: 48px; }
+.section-head h2 { font-size: clamp(1.6rem, 2.5vw, 2.25rem); color: var(--text); }
+.section-head p { color: var(--muted); }
+.eyebrow {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: #e8f9ee;
+  padding: 6px 12px;
+  border-radius: 999px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .95rem;
+  cursor: pointer;
+  border: none;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.btn-sm { padding: 9px 18px; font-size: .85rem; }
+.btn-primary {
+  background: var(--gradient);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(0, 200, 83, 0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 200, 83, 0.45); }
+.btn-ghost {
+  background: transparent;
+  color: var(--green-dark);
+  border: 2px solid var(--green);
+}
+.btn-ghost:hover { background: var(--green); color: var(--white); transform: translateY(-2px); }
+
+/* ==========================================================================
+   HEADER / NAV
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--gray-2);
+}
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  gap: 16px;
+}
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.15rem; }
+.logo-mark {
+  display: inline-grid; place-items: center;
+  width: 32px; height: 32px;
+  background: var(--gradient);
+  color: white; border-radius: 8px;
+  font-size: 1rem;
+}
+.logo-accent { color: var(--green); }
+.main-nav ul { display: none; gap: 28px; }
+.main-nav a { color: var(--text); font-weight: 500; font-size: .95rem; }
+.main-nav a:hover { color: var(--green-dark); }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  padding: 60px 0 80px;
+  background:
+    radial-gradient(900px 500px at 90% -10%, rgba(0,200,83,0.15), transparent 60%),
+    radial-gradient(700px 400px at -10% 20%, rgba(27,94,32,0.10), transparent 60%),
+    var(--gradient-soft);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-copy h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.02em;
+}
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.hero .lead { font-size: 1.1rem; max-width: 560px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0 28px; }
+.hero-trust {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  border-top: 1px solid var(--gray-2);
+  padding-top: 18px;
+}
+.hero-trust li { color: var(--muted); font-size: .9rem; }
+.hero-trust strong { display: block; color: var(--green-dark); font-size: 1.25rem; }
+
+/* Hero illustration (pure CSS) */
+.hero-art { position: relative; min-height: 360px; }
+.art-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-1deg);
+  transition: transform var(--transition);
+}
+.art-card:hover { transform: rotate(0deg) translateY(-4px); }
+.art-header { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background: #ff5f57; }
+.dot.yellow { background: #febc2e; }
+.dot.green { background: #28c840; }
+.art-title { margin-left: 8px; font-weight: 600; font-size: .85rem; color: var(--muted); }
+.art-stat {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px;
+}
+.art-stat span { color: var(--muted); font-size: .9rem; }
+.art-stat strong { color: var(--green-dark); font-size: 1.6rem; }
+.bars {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+  height: 120px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.bars span {
+  background: var(--gradient);
+  border-radius: 4px 4px 0 0;
+  opacity: .85;
+  transition: opacity var(--transition);
+}
+.bars:hover span { opacity: 1; }
+.art-footer { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: var(--gray);
+  color: var(--text);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.pill.green { background: #e8f9ee; color: var(--green-dark); }
+
+.floating-card {
+  position: absolute;
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.floating-card.f1 { top: 14px; left: -10px; }
+.floating-card.f2 { bottom: 10px; right: -8px; color: var(--green-dark); }
+
+/* ==========================================================================
+   GENERIC CARD GRID (Features / Benefits / Testimonials)
+   ========================================================================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-2);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: rgba(0, 200, 83, 0.4);
+}
+.card h3 { font-size: 1.1rem; }
+.card p  { margin: 0; }
+.card-icon {
+  display: inline-grid; place-items: center;
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--gradient-soft);
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+.card.soft { background: var(--gradient-soft); border-color: transparent; }
+
+/* ==========================================================================
+   HOW IT WORKS — Steps
+   ========================================================================== */
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  counter-reset: step;
+}
+.step {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.step:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.step-num {
+  display: inline-block;
+  font-weight: 800;
+  color: transparent;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+.step h3 { font-size: 1.1rem; }
+.step p  { margin: 0; }
+
+/* ==========================================================================
+   STATS
+   ========================================================================== */
+.stats-section {
+  background: var(--gradient);
+  color: var(--white);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat strong {
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+}
+.stat span { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
+.testimonial p {
+  font-size: 1rem;
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.testimonial footer { border-top: 1px solid var(--gray-2); padding-top: 12px; }
+.testimonial strong { display: block; color: var(--green-dark); }
+.testimonial span { font-size: .85rem; color: var(--muted); }
+
+/* ==========================================================================
+   ABOUT + ASIDE
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.about-main h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+.tips {
+  background: var(--gradient-soft);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid #d6f0e0;
+}
+.tips h3 { color: var(--green-dark); margin-bottom: 14px; }
+.tips ul { display: grid; gap: 10px; }
+.tips li {
+  background: var(--white);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-size: .92rem;
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.contact-info { display: grid; gap: 8px; color: var(--muted); margin-top: 16px; }
+.contact-form {
+  background: var(--white);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+}
+.contact-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--text);
+}
+.contact-form input,
+.contact-form textarea {
+  font: inherit;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-2);
+  border-radius: var(--radius-sm);
+  background: var(--gray);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+  resize: vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.15);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: #0e1a14;
+  color: #cfd6d0;
+  padding: 56px 0 20px;
+  margin-top: 40px;
+}
+.site-footer .logo { color: var(--white); }
+.site-footer h4 { color: var(--white); margin-bottom: 14px; font-size: 1rem; }
+.muted { color: #9aa39c; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.footer-links { display: grid; gap: 8px; }
+.footer-links a:hover { color: var(--green); }
+.socials { display: flex; gap: 10px; }
+.socials a {
+  display: inline-grid; place-items: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  font-size: .9rem;
+  font-weight: 700;
+  transition: background var(--transition), transform var(--transition);
+}
+.socials a:hover { background: var(--green); transform: translateY(-3px); }
+.copyright {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 36px;
+  padding-top: 18px;
+  text-align: center;
+  color: #8a9390;
+  font-size: .85rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE — Tablet
+   ========================================================================== */
+@media (min-width: 640px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps      { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+
+/* ==========================================================================
+   RESPONSIVE — Desktop
+   ========================================================================== */
+@media (min-width: 960px) {
+  .main-nav ul { display: flex; }
+  .section { padding: 96px 0; }
+
+  .hero-grid    { grid-template-columns: 1.1fr 1fr; }
+  .cards-grid   { grid-template-columns: repeat(3, 1fr); }
+  .steps        { grid-template-columns: repeat(4, 1fr); }
+  .about-grid   { grid-template-columns: 2fr 1fr; gap: 48px; }
+  .contact-grid { grid-template-columns: 1fr 1.1fr; gap: 56px; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ============== HEADER / STICKY NAV ============== -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="logo">
+        <span class="logo-mark">⚡</span>
+        <span class="logo-text">EcoWatt <span class="logo-accent">AI</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contact" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============== HERO ============== -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">AI · Energy · Savings</span>
+          <h1>Save More. Waste Less. <span class="gradient-text">Powered by AI.</span></h1>
+          <p class="lead">
+            EcoWatt AI analyzes your electricity bill, detects peak-time usage,
+            and gives you smart, personalized recommendations to lower your
+            monthly costs — automatically.
+          </p>
+          <div class="hero-cta">
+            <a href="#features" class="btn btn-primary">Try Demo</a>
+            <a href="#how" class="btn btn-ghost">Learn More</a>
+          </div>
+
+          <ul class="hero-trust">
+            <li><strong>30%</strong> avg savings</li>
+            <li><strong>10k+</strong> bills analyzed</li>
+            <li><strong>95%</strong> accuracy</li>
+          </ul>
+        </div>
+
+        <!-- Pure-CSS analytics illustration placeholder -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card">
+            <div class="art-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="art-title">Energy Insights</span>
+            </div>
+            <div class="art-stat">
+              <span>This month</span>
+              <strong>− 28%</strong>
+            </div>
+            <div class="bars">
+              <span style="height:35%"></span>
+              <span style="height:55%"></span>
+              <span style="height:40%"></span>
+              <span style="height:80%"></span>
+              <span style="height:60%"></span>
+              <span style="height:90%"></span>
+              <span style="height:45%"></span>
+              <span style="height:70%"></span>
+              <span style="height:30%"></span>
+              <span style="height:50%"></span>
+            </div>
+            <div class="art-footer">
+              <span class="pill">Peak hour 7–9 PM</span>
+              <span class="pill green">Optimized</span>
+            </div>
+          </div>
+          <div class="floating-card f1">AI Suggestion: Run washer at 2 PM ↓</div>
+          <div class="floating-card f2">Saved ₹1,240 this week ✅</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FEATURES ============== -->
+    <section id="features" class="section">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Features</span>
+          <h2>Everything you need to cut your power bill</h2>
+          <p>Six powerful tools, one intelligent platform.</p>
+        </header>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI Bill Analysis</h3>
+            <p>Upload any electricity bill and let our AI break down every charge instantly.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🔌</div>
+            <h3>Appliance Usage Insights</h3>
+            <p>See which appliances consume the most power — and when.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">⏰</div>
+            <h3>Peak Hour Detection</h3>
+            <p>Identify your prime-time energy usage and shift it to cheaper hours.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">💡</div>
+            <h3>Smart Recommendations</h3>
+            <p>Personalized tips powered by machine learning, tailored to your usage.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">📈</div>
+            <h3>Cost Prediction</h3>
+            <p>Forecast next month's bill before it arrives — and act on it early.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">📊</div>
+            <h3>Monthly Savings Reports</h3>
+            <p>Beautiful, easy-to-read reports that show exactly how much you saved.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== HOW IT WORKS ============== -->
+    <section id="how" class="section section-alt">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">How It Works</span>
+          <h2>From bill to savings in 4 simple steps</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">01</span>
+            <h3>Upload Bill</h3>
+            <p>Snap a photo or upload a PDF of your electricity bill.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <h3>AI Analyzes Usage</h3>
+            <p>Our models parse every line item and build your energy profile.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <h3>Detects Peak Consumption</h3>
+            <p>We pinpoint when and where your energy is being wasted.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">04</span>
+            <h3>Get Savings Suggestions</h3>
+            <p>Receive a clear, actionable plan to slash your next bill.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============== BENEFITS ============== -->
+    <section id="benefits" class="section">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Benefits</span>
+          <h2>Why families &amp; businesses choose EcoWatt AI</h2>
+        </header>
+
+        <div class="cards-grid">
+          <article class="card soft"><h3>💰 Reduce Monthly Bills</h3><p>Cut up to 30% off your electricity expenses.</p></article>
+          <article class="card soft"><h3>🌱 Save Energy</h3><p>Use less power without changing your lifestyle.</p></article>
+          <article class="card soft"><h3>📅 Smart Scheduling</h3><p>Run heavy appliances at the cheapest times.</p></article>
+          <article class="card soft"><h3>🌍 Environmental Impact</h3><p>Lower your carbon footprint, one watt at a time.</p></article>
+          <article class="card soft"><h3>📱 Easy Monitoring</h3><p>Track usage from any device, anywhere.</p></article>
+          <article class="card soft"><h3>🧠 AI-Powered Decisions</h3><p>Let intelligent automation do the thinking.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== STATISTICS ============== -->
+    <section class="section stats-section">
+      <div class="container stats-grid">
+        <div class="stat"><strong>30%</strong><span>Average Savings</span></div>
+        <div class="stat"><strong>10,000+</strong><span>Bills Analyzed</span></div>
+        <div class="stat"><strong>95%</strong><span>Prediction Accuracy</span></div>
+        <div class="stat"><strong>24/7</strong><span>AI Monitoring</span></div>
+      </div>
+    </section>
+
+    <!-- ============== TESTIMONIALS ============== -->
+    <section class="section section-alt">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Testimonials</span>
+          <h2>Loved by smart savers everywhere</h2>
+        </header>
+
+        <div class="cards-grid testimonials">
+          <article class="card testimonial">
+            <p>"EcoWatt AI cut my bill by ₹1,800 in the very first month. The peak-hour insights were eye-opening."</p>
+            <footer><strong>Ananya R.</strong><span>Homeowner, Bengaluru</span></footer>
+          </article>
+          <article class="card testimonial">
+            <p>"As a small café owner, every rupee counts. The AI recommendations are practical and easy to follow."</p>
+            <footer><strong>Rahul M.</strong><span>Café Owner, Pune</span></footer>
+          </article>
+          <article class="card testimonial">
+            <p>"The cost prediction is scary accurate. I finally feel in control of my electricity expenses."</p>
+            <footer><strong>Priya S.</strong><span>Engineer, Hyderabad</span></footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ABOUT + ASIDE ============== -->
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <article class="about-main">
+          <span class="eyebrow">About EcoWatt AI</span>
+          <h2>Smarter energy, powered by intelligence</h2>
+          <p>
+            EcoWatt AI is on a mission to make every kilowatt count. We use
+            advanced machine learning to read your electricity bills, understand
+            how your home or business consumes power, and recommend exactly how
+            to spend less without compromising comfort.
+          </p>
+          <p>
+            By detecting peak-hour patterns, predicting future costs, and
+            surfacing inefficient appliances, our platform turns raw energy data
+            into clear actions — making sustainability simple, accessible, and
+            financially rewarding for everyone.
+          </p>
+        </article>
+
+        <!-- Sidebar with energy saving tips -->
+        <aside class="tips" aria-label="Energy Saving Tips">
+          <h3>💡 Energy Saving Tips</h3>
+          <ul>
+            <li>Turn off idle appliances at the plug.</li>
+            <li>Use heavy devices during optimal off-peak hours.</li>
+            <li>Replace old appliances with energy-efficient models.</li>
+            <li>Monitor your monthly usage to spot anomalies early.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============== CONTACT ============== -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact-grid">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2>Ready to lower your bill?</h2>
+          <p>Send us a message and our team will get back within 24 hours.</p>
+          <ul class="contact-info">
+            <li>📧 hello@ecowatt.ai</li>
+            <li>📞 +91 98765 43210</li>
+            <li>📍 Bengaluru, India</li>
+          </ul>
+        </div>
+
+        <form class="contact-form" action="#" method="post">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your full name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" placeholder="How can we help?" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">⚡</span>
+          <span class="logo-text">EcoWatt <span class="logo-accent">AI</span></span>
+        </div>
+        <p class="muted">AI-powered electricity bill optimizer and prime-time energy analyzer.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>hello@ecowatt.ai</li>
+          <li>+91 98765 43210</li>
+          <li>Bengaluru, India</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow Us</h4>
+        <div class="socials" aria-label="Social media">
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">
+      © 2026 EcoWatt AI. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
